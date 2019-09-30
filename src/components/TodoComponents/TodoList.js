@@ -1,37 +1,19 @@
 import React from 'react';
+import Todo from './Todo';
 
-class ListForm extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      item: ''
-    };
-  }
+const TodoList = props => {
+  // const sortedList = props.todos.sort((a, b) => a.completed - b.completed);
+  return (
+    <div className="shopping-list">
+      {props.todos.map(todo => (
+        <todo key={todo.id} todo={todo} toggletTdo={props.toggletodo} />
+      ))}
+      <button className="clear-btn" onClick={props.clearCompleted}>
+        Clear Completed
+      </button>
+    </div>
+  );
+};
 
-  handleChanges = e => {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
-  };
+export default TodoList;
 
-  submitItem = e => {
-    e.preventDefault();
-    this.props.addItem(this.state.item);
-  };
-
-  render() {
-    return (
-      <form onSubmit={this.submitItem}>
-        <input
-          type="text"
-          value={this.item}
-          name="item"
-          onChange={this.handleChanges}
-        />
-        <button>Add</button>
-      </form>
-    );
-  }
-}
-
-export default ListForm;

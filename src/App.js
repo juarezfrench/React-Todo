@@ -51,13 +51,13 @@ toggleItem = id => {
       purchased: false
     };
     this.setState({
-      groceries: [...this.state.groceries, newItem]
+      todos: [...this.state.todos, newItem]
     });
   };
 
   clearPurchased = () => {
     this.setState({
-      groceries: this.state.groceries.filter(item => !item.purchased)
+      todos: this.state.todos.filter(item => !item.purchased)
     });
   };
 
@@ -66,12 +66,15 @@ toggleItem = id => {
       <div className="App">
         <div className="header">
           <h1>Todo List</h1>
-          <TodoForm addItem={this.addItem} />
+          {/* <TodoForm addItem={this.addItem} /> */}
         </div>
         <TodoList
           todos={this.state.todos}
           toggleItem={this.toggleItem}
+          toggleCompleted = {
+            this.toggleCompleted}
         />
+         <TodoForm addTodo={this.addItem} filterCompleted = {this.filterCompleted}/>
       </div>
     );
   }
